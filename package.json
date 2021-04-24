@@ -1,0 +1,17 @@
+{
+  "name": "leet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "jshint": "^2.10.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
