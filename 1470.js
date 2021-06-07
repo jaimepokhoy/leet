@@ -1,6 +1,13 @@
-const shuffle = (nums, n) => {};
+const shuffle = (nums, n) => {
+  let res = [];
+  for (i = 0; i < n; i++) {
+    res.push(nums[i], nums[i + n]);
+  }
 
-const nums = [2, 5, 1, 3, 4, 7];
-const n = 3;
+  return res;
+};
+
+const nums = [1, 2, 3, 4, 4, 3, 2, 1];
+const n = 4;
 
 console.log(shuffle(nums, n));
