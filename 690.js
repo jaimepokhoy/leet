@@ -1,24 +1,26 @@
-const GetImportance = (employees, id) => {
-  let subordinates = [];
-  let sum = 0;
-  for (let i = 0; i < employees.length; i++) {
-    if (employees[i].id === id || subordinates.includes(employees[i].id)) {
-      // sum = sum + employees[i].importance;
-      subordinates = [...subordinates, ...employees[i].subordinates];
-    }
+const getImportance = (employees, id) => {
+  const employeeMap = new Map();
+
+  for ({ id, importance, subordinates } of employees) {
+    employeeMap.set(id, { importance, subordinates });
   }
 
-  for (let x = 0; x < employees.length; x++) {
-    if (employees[x].id === id || subordinates.includes(employees[x].id)) {
-      sum = sum + employees[x].importance;
+  function dfs(id) {
+    let sum = employeeMap.get(id).importance;
+    for (sub of employeeMap.get(id).subordinates) {
+      sum += dfs(sub);
     }
+
+    return sum;
   }
 
-  return sum;
+  dfs(id);
 };
 
 const input = [
-  [1, 5, [2, 3]],
-  [2, 3, []],
-  [3, 3, []],
+  { id: 1, importance: 5, subordinates: [2, 3] },
+  { id: 2, importance: 3, subordinates: [] },
+  { id: 3, importance: 3, subordinates: [] },
 ];
+
+console.log(getImportance(input, 1));
